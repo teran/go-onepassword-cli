@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+if [[ "${@}" != "item get blah --format=json --fields=password" ]]; then
+  echo "expected: 'item get blah --format=json --fields=password' got '${@}'" >&2
+  exit 1
+fi
+
+echo '{
+  "id": "password",
+  "type": "CONCEALED",
+  "purpose": "PASSWORD",
+  "label": "password",
+  "value": "test_password",
+  "reference": "op://Personal/someid/password",
+  "password_details": {
+    "strength": "FANTASTIC"
+  }
+}'
